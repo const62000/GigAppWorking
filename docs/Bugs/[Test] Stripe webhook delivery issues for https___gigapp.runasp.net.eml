@@ -1,0 +1,1709 @@
+Received: from CH2PR14MB3899.namprd14.prod.outlook.com (2603:10b6:610:66::15)
+ by PH0PR14MB6653.namprd14.prod.outlook.com with HTTPS; Wed, 12 Feb 2025
+ 10:08:27 +0000
+Received: from BYAPR08CA0055.namprd08.prod.outlook.com (2603:10b6:a03:117::32)
+ by CH2PR14MB3899.namprd14.prod.outlook.com (2603:10b6:610:66::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.21; Wed, 12 Feb
+ 2025 10:08:23 +0000
+Received: from SJ5PEPF000001F7.namprd05.prod.outlook.com
+ (2603:10b6:a03:117:cafe::16) by BYAPR08CA0055.outlook.office365.com
+ (2603:10b6:a03:117::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.31 via Frontend Transport; Wed,
+ 12 Feb 2025 10:08:22 +0000
+Authentication-Results: spf=pass (sender IP is 54.240.62.30)
+ smtp.mailfrom=bounce.stripe.com; dkim=pass (signature was verified)
+ header.d=stripe.com;dmarc=pass action=none
+ header.from=stripe.com;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.com: domain of bounce.stripe.com
+ designates 54.240.62.30 as permitted sender) receiver=protection.outlook.com;
+ client-ip=54.240.62.30; helo=a62-30.smtp-out.us-west-2.amazonses.com; pr=C
+Received: from a62-30.smtp-out.us-west-2.amazonses.com (54.240.62.30) by
+ SJ5PEPF000001F7.mail.protection.outlook.com (10.167.242.75) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.10
+ via Frontend Transport; Wed, 12 Feb 2025 10:08:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=dqcliwr4mswnxa6jg7ggxrsirzjczj3t; d=stripe.com; t=1739354901;
+	h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type;
+	bh=obNRuPGjxN7uahy+ZQN6vHUedohhv0k8+Bzqz097MFw=;
+	b=GPv9b/mqMGSoPYb0XdeiIMFVBjRB7d54FCx10/Qn5QamFdRVJG2Zjgf3MZ/0DPtw
+	qgIOlYS5XjQfjUkAYfRxeGP2owOeNaAsoXrGk7qS5a69iNikTVCaF0RQil/jO44d6Ta
+	QUjMUkLmTdGA5VENdfpxsU7Kxg3ZnXmfpL6qvrrs=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1739354901;
+	h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type:Feedback-ID;
+	bh=obNRuPGjxN7uahy+ZQN6vHUedohhv0k8+Bzqz097MFw=;
+	b=nE5F9TRjETVZ42M8WvurHl8DX2rT8QBL1Zz7H+1+J7fYO1+YIvw4GDFJJxuv3Sz4
+	m3MMrZ9YAZbKXEtEFpckYTmxtyGn7dt/xIEWTUjBYjbFTnHEUbBkkqhfUKmQon0wGPa
+	ewOQg5fgOokGOlYj/ooExr6Y8mQbsehKfzRcitdE=
+Date: Wed, 12 Feb 2025 10:08:21 +0000
+From: Stripe <notifications@stripe.com>
+Reply-To: Stripe <notifications@stripe.com>
+To: saif@purescale.ai
+Message-ID: <01010194f9a18c1b-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000@us-west-2.amazonses.com>
+Subject: [Test] Stripe webhook delivery issues for https://gigapp.runasp.net
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_67ac73145533f_3d9a7c82bfcc536a8"
+X-Stripe-EID: em_th4ba3rbyciajke1jju53tysmu1chy
+BIMI-Selector: v=BIMI1; s=transactional;
+Feedback-ID: ::1.us-west-2.U9efwdPDLNZNk/S34uMIpcrlbDF6b3rs/s41tFWSWJ8=:AmazonSES
+X-SES-Outgoing: 2025.02.12-54.240.62.30
+Return-Path: 01010194f9a18c1b-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000@bounce.stripe.com
+X-MS-Exchange-Organization-ExpirationStartTime: 12 Feb 2025 10:08:22.5676
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: 0ebe5e5d-e7df-42a8-8e27-08dd4b4d2ec4
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 1885feb7-537b-4032-b9a5-58e49aa7ed97:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F7:EE_|CH2PR14MB3899:EE_|PH0PR14MB6653:EE_
+X-MS-Exchange-Organization-AuthSource: SJ5PEPF000001F7.namprd05.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: 0ebe5e5d-e7df-42a8-8e27-08dd4b4d2ec4
+X-MS-Exchange-Organization-SCL: 1
+X-Microsoft-Antispam: BCL:2;ARA:13230040|12012899012|32142699015|69100299015|3072899012|3092899012|5062899012|4092899012|13102899012|13012899012|1032899013|2092899012|13003099007|4076899003|8096899003|2066899003;
+X-Forefront-Antispam-Report: CIP:54.240.62.30;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:a62-30.smtp-out.us-west-2.amazonses.com;PTR:a62-30.smtp-out.us-west-2.amazonses.com;CAT:NONE;SFS:(13230040)(12012899012)(32142699015)(69100299015)(3072899012)(3092899012)(5062899012)(4092899012)(13102899012)(13012899012)(1032899013)(2092899012)(13003099007)(4076899003)(8096899003)(2066899003);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2025 10:08:22.2395
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ebe5e5d-e7df-42a8-8e27-08dd4b4d2ec4
+X-MS-Exchange-CrossTenant-Id: 1885feb7-537b-4032-b9a5-58e49aa7ed97
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F7.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR14MB3899
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:04.8682006
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.8445.008
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Ukk5NkxURjRNMTlTV1p5aS9HQWVrY2lSQi9TTDhKTUxDa3g5bm93bDNkMUVn?=
+ =?utf-8?B?ZzV5UC8velY3UDlPa2V5RnBFb2lmbExCblo4ZmNuT1RWbVVHbFpmUmJocnF0?=
+ =?utf-8?B?SmQ3cU15T1oxSDU3dHlvaHpGaDlqVnhFaG5DeXhiZ0sxZHI3VGJuTndtcjNF?=
+ =?utf-8?B?UGo2c0FTbStPa0src05TVUhaV3BvMVVUYmYzeXBpRGx6Vmo5TXVZalptSjVU?=
+ =?utf-8?B?SW9GQXVjd0lGaUFSVnJXVkdCK3BiQm1iNm5DN2ZWaHNPWjRtdEtGOHRmR3A2?=
+ =?utf-8?B?bGxVZk5nZ0Y4MDRZc3hObFc3aTJNeCtXWjY3SFh1VnowQXBicHJRNzdyY21Z?=
+ =?utf-8?B?TndYWitib1FFWE0vU1J2Mm9hSk9Tb1Q3NU4zQW1CdjJxQVBmcjYzcmxNMThz?=
+ =?utf-8?B?WURMcnB0T2FNeE9Vc0NiTXczVDFYdUxUNFRVV2tJaWlHMmJORHEvUE5QM0tT?=
+ =?utf-8?B?aGRURFVVSlFxZTR3ZUE1S05aRzFoeVNBMHBNY3ZNcmlwUitqcmJtbk5iVWV4?=
+ =?utf-8?B?NFYzNVBvQUxSYWlTUUNOeFFvUFowQi96Ky9FSE55NFNLWEp3TGFValMwSDVG?=
+ =?utf-8?B?T2swM25XZ2dCcmZ5SW1Ec1p4azJlQzZPU1ZHZ2x6NDR5MDdESFJBbTYxbFov?=
+ =?utf-8?B?K3NOSWZxMVZNdGM4a0Q5WGNnUlpXZVFYUDk5OEVyQXJmaFl5ZWxmRGtXOHhw?=
+ =?utf-8?B?SkovNW80VFRPalZWMnpmKzB5VlQ2RVdmaTM2SXZNQ3BGSjdYYi9zWVBlcWM1?=
+ =?utf-8?B?a3Q3aFdZUVJyOTFYdElNMzZuNlVEY3NSVDBTUjh5RllMRGhmRlZXMGt2Q3ZO?=
+ =?utf-8?B?OEhxcUE4T0c0UGZDUGlGSEl6SHdtL0oxMEt0emo1dDRrS3VDOVR5amlXRXA3?=
+ =?utf-8?B?RmM2bWlyZXZpWktNM0MrSnlZenZwSnRsQnNCa3B3T0w2SXlYQWFIeHZhazFV?=
+ =?utf-8?B?NUMxRnR6M1VHV1BMRUg0aDJXSXBaMDR0NzVUbTM1bXVhZG9VekZCZDdqN1Ns?=
+ =?utf-8?B?R1crZlRGUmprL2I3Z3JTMTRHTlJPRTdwbzBWcndyYW1FT2hHMXk4WGVENjd1?=
+ =?utf-8?B?NkFyWW40b0JHRVBVQU1vZXJ3c2NVUkhuRURjd1BLQnh6aEd4OUgrY1FGV1lE?=
+ =?utf-8?B?QjRjdFZ4QVczWlBEc1lJSjlSMlYrNUkxbDU5QnBGdTNBNEc4WElRN1B5SlBz?=
+ =?utf-8?B?UHEwNFQrdFFvMnNjY1RoY0JONi9LbGQrS3Zvc2ExMTFBeXluc2U4eHROMVZq?=
+ =?utf-8?B?c0d6Z2JhZlZkVW4zWThTSTYyTXBJYzZSUDZIOGNja2FIbGxmTWxib3lkQmlI?=
+ =?utf-8?B?R3pYT3BEbUFvWXFPNnVmRzYzVjZBbnVnYTc0NXk0UmxQTXFNNDJKaUFmVU12?=
+ =?utf-8?B?ek81M2o0K3lkTEhtWnBvSCt2UDBxZE9hRWw3cm5sRm1ad1N0YXIzU29yTkZj?=
+ =?utf-8?B?elljZWZoMG92Y0NPSEE3MFF4eWtaNTFKbzl2K3crU3JLcmxWb1V2UmZZbng5?=
+ =?utf-8?B?RnNkM0VLMVF4QXA2WWNLVFdseXhyL0V3c2Q3VFRHRHBsTlQ0Q2pkc2kxaVJ6?=
+ =?utf-8?B?cnhPSjBnaVZoTURITWw2VXJ4dUEwSDllSExpV0Nob1JNd1d0dU1GRUNMaHFT?=
+ =?utf-8?B?ZjRwRjRYY2hMUk9VN2FJRzhrdHpzV1VBbEZUYTZITitxZmtBVm1nZU5Kd28x?=
+ =?utf-8?B?bFViWFpYUHQ1NzhheVpNczljWC9KQUN3RXdtMittS0k2QlowMjBKZ0JpWVlH?=
+ =?utf-8?B?WE5FRzBhL0dmK1NvMHg3KzNPTUxaMmllb3ZUQlR0Ry90ODBvYWlPN2NHUVlQ?=
+ =?utf-8?B?dmtkeHptUFdWNkNCQzhiVkJSeEx2MmkrdlMwQWdKdVlrOEdGYytSb3FxaXBD?=
+ =?utf-8?B?emJVU0d6YndpazBUUlo2cEZqYUJLQ1FOVXg3RjZ5dzlJSWpyV29UNzdaZXli?=
+ =?utf-8?B?TWJCb3dDNTd6ZzZrKy9icXlILzFUblRYbmhBRHh4TjVEdXVuQWo5clAvZllF?=
+ =?utf-8?B?WE5mUFV6ZnhoNzhXRkRMbmh3R1lUY2dmRWIzcTJieFNFdEFjZDR6NjhncExa?=
+ =?utf-8?B?emVvSXRZaDQvKzNHUVEzSFRJWDUvVUxOR1E4TDRpbG43Q2E5Q292WVVrMkFM?=
+ =?utf-8?B?UW12YkRQZ0RXMjJ2ZkkyUEprNDhqTkxvV01YdG4wSzdqWGFIWjJQZnVoODBr?=
+ =?utf-8?B?WGRMTlFscFpSQXorNGplM1FYVWxnZXYyN0Erd3grLzVuVVE3MkFHT243dkox?=
+ =?utf-8?B?N0NmUFpESitxVDdEQ2ZteDRXdVlsRXhkdU95eTJTSVVLTGVnRThObzQwUi9J?=
+ =?utf-8?B?ZURMYk54aEpmT0VEdjJUd3RLbGphNUxuQ1JGQ3dDQWM5L2lzOS9MZjRQUGxa?=
+ =?utf-8?B?NFordkFuOUNVY2RQNTJ3NXhqVVY5bVViektQWEVpY05WalVlMit2aU9uT1Ey?=
+ =?utf-8?B?TDY5dnc3aENVMUlIcnNlOW5BWEMrWnZDbUNIWWsxUEpZL1N4VUZEdXBoTVYx?=
+ =?utf-8?B?Q3lGWVRwWDdvc29aUVpwcXp5QVdnQjhHVHdmVkV1Uyt2QU1qVXY3dzdCb1A5?=
+ =?utf-8?B?K3oyNTJnZ0lLNndIYU1aNkFydW1ycnE1YkY5cExkZUVrQUNacGJNOGFHV2JK?=
+ =?utf-8?B?NUV0UFcwdjBWYVNkcWRoS25JU1ovT0Uzckx3YS9PRjNVejlrd2wxRHBHQ2dr?=
+ =?utf-8?B?TWg0Z1JiYnBTTHFNbzZ6N2M2RFU2Q2wxVmFNenp4VFBYWExBSm9lVDNmeDBi?=
+ =?utf-8?B?bWZCWHYyY2hVZWhFenhicGQyYjJESWt1eWc1SXJCbitVZVVKejUzNHBNM29w?=
+ =?utf-8?B?eFhpK21pZEtvTFk3VXloMnJkdnVlNlZDNmhVZUcyMFNPOHpzNkdjOFIxdGJW?=
+ =?utf-8?B?eWRxKzNJd3RmZFVvcUFYVGh0K3c5dENZcldNZFF6emZGU0xlODBHTEFZeEdF?=
+ =?utf-8?B?UytCZWNqVjFPK3Q5YlFod0pZdlp3OWRRK216UE5TR0EyZDkvalE9PQ==?=
+MIME-Version: 1.0
+
+----==_mimepart_67ac73145533f_3d9a7c82bfcc536a8
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi there,
+
+We=E2=80=99ve had some trouble sending requests in test mode to a webhook=
+ endpoint associated with your Abdo account. Stripe sends webhook events =
+(https://stripe.com/docs/webhooks) to your server to notify you of activi=
+ty in your Stripe account, such as a completed payout or a newly-created =
+invoice.
+
+The URL of the failing webhook endpoint is: https://gigapp.runasp.net/api=
+/stripe-webhook
+
+You (or someone on your team) configured your Stripe account to send even=
+ts to that URL. You can change your account=E2=80=99s webhook endpoints f=
+rom the Dashboard (https://dashboard.stripe.com/b/acct_1QgrriP8D5DYTUU6?d=
+estination=3D%2Fwebhooks).
+
+In most cases, a failing webhook does not impact your payments or payouts=
+. However:
+
+- If you use subscriptions we rely on your webhook endpoint (https://stri=
+pe.com/docs/billing/subscriptions/webhooks#understand) to notify you of n=
+ew invoices. These invoices may be delayed for up to three days if your e=
+ndpoint is unable to successfully receive them.
+
+- If you use Checkout and rely on the checkout.session.completed event as=
+ part of your purchase fulfillment process (https://stripe.com/docs/payme=
+nts/checkout/fulfillment#webhooks), you should review your completed paym=
+ents to ensure you have fulfilled all recent purchases.
+
+We=E2=80=99ve attempted to send event notifications to this endpoint 18 t=
+imes since the first failure on February 9, 2025 at 10:07:23 AM UTC. If t=
+his endpoint is important to your application, please try and fix the iss=
+ue. If you do not need this webhook endpoint, you can remove it from your=
+ Stripe webhook settings (https://dashboard.stripe.com/b/acct_1QgrriP8D5D=
+YTUU6?destination=3D%2Fwebhooks). We will stop sending event notification=
+s to this webhook endpoint by February 18, 2025 at 10:07:23 AM UTC.
+
+Here is the summary of errors we received while attempting to send webhoo=
+k events:
+
+- 18 requests had other errors while sending the webhook event.
+
+You need to return any status code between HTTP 200 to 299 for Stripe to =
+consider the webhook event successfully delivered.
+
+For more details on these errors and to review your account=E2=80=99s rec=
+ent activity, you can find the full set of events (https://dashboard.stri=
+pe.com/b/acct_1QgrriP8D5DYTUU6?destination=3D%2Ftest%2Fevents) and reques=
+t logs (https://dashboard.stripe.com/b/acct_1QgrriP8D5DYTUU6?destination=3D=
+%2Ftest%2Flogs) on the Dashboard.
+
+For more in-depth information on how to use webhooks, we recommend review=
+ing our documentation (https://stripe.com/docs/webhooks).
+
+Yours,
+
+The Stripe team
+
+=3D=3D=3D
+This email relates to your Abdo Stripe account.
+Account ID: acct_1QgrriP8D5DYTUU6
+
+Need to refer to this message? Use this ID: em_th4ba3rbyciajke1jju53tysmu=
+1chy
+
+Stripe, 354 Oyster Point Blvd, South San Francisco, CA 94080
+
+You are subscribed to Webhooks emails. Manage your communication preferen=
+ces here: https://dashboard.stripe.com/b/acct_1QgrriP8D5DYTUU6?destinatio=
+n=3D%2Fsettings%2Fcommunication-preferences%23webhook_emails=
+
+----==_mimepart_67ac73145533f_3d9a7c82bfcc536a8
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3.=
+org/1999/xhtml" lang=3D"en" xml:lang=3D"en"><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width">
+    <meta name=3D"robots" content=3D"noindex">
+  <title>Stripe webhook delivery issues for https://gigapp.runasp.net</titl=
+e><style>/**
+  * IMPORTANT:
+  * Please read before changing anything, CSS involved in our HTML emails i=
+s
+  * extremely specific and written a certain way for a reason. It might not=
+ make
+  * sense in a normal setting but Outlook loves it this way.
+  *
+  * !!! div[style*=3D"margin: 16px 0"] allows us to target a weird margin
+  * !!! bug in Android's email client.
+  * !!! Do not remove.
+  *
+  * Also, the img files are hosted on S3. Please don't break these URLs!
+  * The images are also versioned by date, so please update the URLs accord=
+ingly
+  * if you create new versions
+  *
+***/
+
+
+/**
+  * # Root
+  * - CSS resets and general styles go here.
+**/
+
+html, body,
+a, span, div[style*=3D"margin: 16px 0"] {
+  border: 0 !important;
+  margin: 0 !important;
+  outline: 0 !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+}
+
+a, span,
+td, th {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/**
+  * # Delink
+  * - Classes for overriding clients which creates links out of things like
+  *   emails, addresses, phone numbers, etc.
+**/
+
+span.st-Delink a {
+  color: #414552 !important;
+  text-decoration: none !important;
+}
+
+/** Modifier: preheader */
+span.st-Delink.st-Delink--preheader a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+/** */
+
+/** Modifier: title */
+span.st-Delink.st-Delink--title a {
+  color: #414552 !important;
+  text-decoration: none !important;
+}
+/** */
+
+/** Modifier: footer */
+span.st-Delink.st-Delink--footer a {
+  color: #687385 !important;
+  text-decoration: none !important;
+}
+/** */
+
+/**
+  * # Header
+**/
+
+table.st-Header td.st-Header-background div.st-Header-area {
+  height: 76px !important;
+  width: 600px !important;
+  background-repeat: no-repeat !important;
+  background-size: 600px 76px !important;
+}
+
+table.st-Header td.st-Header-logo div.st-Header-area {
+  height: 29px !important;
+  width: 70px !important;
+  background-repeat: no-repeat !important;
+  background-size: 70px 29px !important;
+}
+
+table.st-Header td.st-Header-logo.st-Header-logo--atlasAzlo div.st-Header-a=
+rea {
+  height: 21px !important;
+  width: 216px !important;
+  background-repeat: no-repeat !important;
+  background-size: 216px 21px !important;
+}
+
+/**
+  * # Retina
+  * - Targets high density displays and devices smaller than 768px.
+  *
+  * ! For mobile specific styling, see `# Mobile`.
+**/
+
+@media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi), al=
+l and (max-width: 768px) {
+
+  /**
+    * # Target
+    * - Hides images in these devices to display the larger version as a
+    *   background image instead.
+  **/
+
+  /** Modifier: mobile */
+  div.st-Target.st-Target--mobile img {
+    display: none !important;
+    margin: 0 !important;
+    max-height: 0 !important;
+    min-height: 0 !important;
+    mso-hide: all !important;
+    padding: 0 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+  }
+  /** */
+
+  /**
+    * # Header
+  **/
+
+  table.st-Header td.st-Header-background div.st-Header-area {
+    background-image: url('https://stripe-images.s3.amazonaws.com/html_emai=
+ls/2017-08-21/header/Header-background.png') !important;
+  }
+
+  /** Modifier: white */
+  table.st-Header.st-Header--white td.st-Header-background div.st-Header-ar=
+ea {
+    background-image: url('https://stripe-images.s3.amazonaws.com/html_emai=
+ls/2017-08-21/header/Header-background--white.png') !important;
+  }
+  /** */
+
+  /** Modifier: simplified */
+  table.st-Header.st-Header--simplified td.st-Header-logo div.st-Header-are=
+a {
+    background-image: url('https://stripe-images.s3.amazonaws.com/html_emai=
+ls/2023-03-30/header/stripe_logo_blurple_email_highres.png') !important;
+  }
+  /** */
+
+  /** Modifier: simplified + atlasAzlo */
+  table.st-Header.st-Header--simplified td.st-Header-logo.st-Header-logo--a=
+tlasAzlo div.st-Header-area {
+    background-image: url('https://stripe-images.s3.amazonaws.com/html_emai=
+ls/2018-05-02/header/Header-logo--atlasAzlo.png') !important;
+  }
+  /** */
+
+}
+
+/**
+  * # Mobile
+  * - This affects emails views in clients less than 600px wide.
+**/
+
+@media only screen and (max-width:600px) {
+
+  /**
+    * # Wrapper
+  **/
+
+  table.st-Wrapper,
+  table.st-Width.st-Width--mobile {
+    min-width: 100% !important;
+    width: 100% !important;
+    border-radius: 0px !important;
+  }
+
+  /**
+    * # Spacer
+  **/
+
+  /** Modifier: gutter */
+  td.st-Spacer.st-Spacer--gutter {
+    width: 16px !important;
+  }
+  /** */
+
+  /** Modifier: td.kill */
+  td.st-Spacer.st-Spacer--kill {
+    width: 0 !important;
+  }
+  td.st-Spacer.st-Spacer--height {
+    height: 0 !important;
+  }
+  /** */
+
+   /** Modifier: div.kill */
+  div.st-Spacer.st-Spacer--kill {
+    height: 0px !important;
+  }
+  /** */
+
+  /** Modifier: footer */
+  .st-Mobile--footer {
+    text-align: left !important;
+  }
+  /** */
+
+  /**
+    * # Font
+  **/
+
+  /** Modifier: title */
+  td.st-Font.st-Font--title,
+  td.st-Font.st-Font--title span,
+  td.st-Font.st-Font--title a {
+    font-size: 20px !important;
+    line-height: 28px !important;
+    font-weight: 700 !important;
+  }
+  /** */
+
+  /** Modifier: header */
+  td.st-Font.st-Font--header,
+  td.st-Font.st-Font--header span,
+  td.st-Font.st-Font--header a {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+  /** */
+
+  /** Modifier: body */
+   td.st-Font.st-Font--body,
+   td.st-Font.st-Font--body span,
+   td.st-Font.st-Font--body a {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+  /** */
+
+  /** Modifier: caption */
+  td.st-Font.st-Font--caption,
+  td.st-Font.st-Font--caption span,
+  td.st-Font.st-Font--caption a {
+    font-size: 12px !important;
+    line-height: 16px !important;
+  }
+  /** */
+
+  /**
+    * # Header
+  **/
+  table.st-Header td.st-Header-background div.st-Header-area {
+    margin: 0 !important;
+    width: auto !important;
+    background-position: 0 0 !important;
+  }
+
+  table.st-Header td.st-Header-background div.st-Header-area {
+    background-image: url('https://stripe-images.s3.amazonaws.com/html_emai=
+ls/2017-08-21/header/Header-background--mobile.png') !important;
+  }
+
+  /** Modifier: white */
+  table.st-Header.st-Header--white td.st-Header-background div.st-Header-ar=
+ea {
+    background-image: url('https://stripe-images.s3.amazonaws.com/html_emai=
+ls/2017-08-21/header/Header-background--white--mobile.png') !important;
+  }
+  /** */
+
+  /** Modifier: simplified */
+  table.st-Header.st-Header--simplified td.st-Header-logo {
+    width: auto !important;
+  }
+
+  table.st-Header.st-Header--simplified td.st-Header-spacing {
+    width: 0 !important;
+  }
+
+  table.st-Header.st-Header--simplified td.st-Header-logo div.st-Header-are=
+a {
+    margin: 0 !important;
+    background-image: url('https://stripe-images.s3.amazonaws.com/html_emai=
+ls/2023-03-30/header/stripe_logo_blurple_email_highres.png') !important;
+  }
+
+  table.st-Header.st-Header--simplified td.st-Header-logo.st-Header-logo--a=
+tlasAzlo div.st-Header-area {
+    margin: 0 auto !important;
+    background-image: url('https://stripe-images.s3.amazonaws.com/html_emai=
+ls/2018-05-02/header/Header-logo--atlasAzlo.png') !important;
+  }
+  /** */
+
+  /**
+    * # Divider
+  **/
+
+  table.st-Divider td.st-Spacer.st-Spacer--gutter,
+  tr.st-Divider td.st-Spacer.st-Spacer--gutter {
+    background-color: #e6ebf1;
+  }
+
+  /**
+    * # Blocks
+  **/
+
+  table.st-Blocks table.st-Blocks-inner {
+    border-radius: 0 !important;
+  }
+
+  table.st-Blocks table.st-Blocks-inner table.st-Blocks-item td.st-Blocks-i=
+tem-cell {
+    display: block !important;
+  }
+
+  /**
+    * # Hero Units
+  **/
+
+  /* Hides dividers in hero units so that vertical spacing remains consiste=
+nt */
+  table.st-Hero-Container td.st-Spacer--divider {
+    display: none !important;
+    margin: 0 !important;
+    max-height: 0 !important;
+    min-height: 0 !important;
+    mso-hide: all !important;
+    padding: 0 !important;
+
+    font-size: 0 !important;
+    line-height: 0 !important;
+  }
+
+  table.st-Hero-Responsive {
+    margin: 16px auto !important;
+  }
+
+  /**
+    * # Button
+  **/
+
+  table.st-Button td.st-Button-area,
+  table.st-Button td.st-Button-area a.st-Button-link,
+  table.st-Button td.st-Button-area span.st-Button-internal {
+    height: 40px !important;
+    line-height: 24px !important;
+    font-size: 16px !important;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio:1.25), (min-resolution:120dpi), all =
+and (max-width:768px) {
+
+  /**
+    * # mobile image
+   **/
+  div.st-Target.st-Target--mobile img {
+    display: none !important;
+    margin: 0 !important;
+    max-height: 0 !important;
+    min-height: 0 !important;
+    mso-hide: all !important;
+    padding: 0 !important;
+
+    font-size: 0 !important;
+    line-height: 0 !important;
+  }
+
+  /**
+    * # document-list-item image
+   **/
+  div.st-Icon.st-Icon--document {
+    background-image: url('https://stripe-images.s3.amazonaws.com/notificat=
+ions/icons/document--16--regular.png') !important;
+  }
+}
+</style></head>
+  <body class=3D"st-Email" bgcolor=3D"#f6f9fc" style=3D"border: 0; margin: =
+0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+min-width: 100%; width: 100%;" override=3D"fix">
+
+      <!-- Background -->
+      <table class=3D"st-Background" bgcolor=3D"#f6f9fc" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"border: 0; margin: 0=
+; padding: 0;">
+        <tbody>
+          <tr>
+            <td class=3D"st-Spacer st-Spacer--kill st-Spacer--height" heigh=
+t=3D"64">
+              <div class=3D"st-Spacer st-Spacer--kill">&nbsp;</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style=3D"border: 0; margin: 0; padding: 0;">
+              <!-- Wrapper -->
+              <table class=3D"st-Wrapper" align=3D"center" bgcolor=3D"#ffff=
+ff" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600" style=3D=
+"border-top-left-radius: 16px; border-top-right-radius: 16px; margin: 0 aut=
+o; min-width: 600px;">
+                <tbody>
+                  <tr>
+                    <td style=3D"border: 0; margin: 0; padding: 0;">
+                     =20
+
+<table class=3D"st-Preheader st-Width st-Width--mobile" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td align=3D"center" height=3D"0" style=3D"border: 0; margin: 0; padd=
+ing: 0; color: #ffffff; display: none !important; font-size: 1px; line-heig=
+ht: 1px; max-height: 0; max-width: 0; mso-hide: all !important; opacity: 0;=
+ overflow: hidden; visibility: hidden;">
+        <span class=3D"st-Delink st-Delink--preheader" style=3D"color: #fff=
+fff; text-decoration: none;">
+
+          We=E2=80=99ve had some trouble sending requests to a webhook endp=
+oint
+
+
+          <!-- Prevents elements showing up in email client preheader text,=
+ fyi https://parcel.io/blog/preheader-spacing -->
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=
+=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=
+=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=
+=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=
+=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=
+=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=
+=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=
+=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F
+          =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =E2=80=87=CD=8F =
+=E2=80=87=CD=8F =E2=80=87=CD=8F
+          =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =
+=C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD
+          =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =
+=C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD
+          =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =
+=C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD
+          =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =
+=C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD
+          =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =
+=C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD
+          &nbsp;
+
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Header st-Header--simplified st-Width st-Width--mobile" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min=
+-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--divider" colspan=3D"4" height=3D"48=
+" style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1=
+px; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td class=3D"st-Header-logo" align=3D"left" height=3D"29" width=3D"70=
+" style=3D"border: 0; margin: 0; padding: 0;">
+        <a style=3D"border: 0; margin: 0; padding: 0; text-decoration: none=
+;" href=3D"https://59.email.stripe.com/CL0/https:%2F%2Fstripe.com/1/0101019=
+4f9a18c1b-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000/_h1GDOIE8ZIkJjnr3pA0f=
+Bq8qTulcC4qlYDq0LVXBgI=3D392">
+          <img alt=3D"Stripe" border=3D"0" class=3D"st-Header-source" heigh=
+t=3D"29" width=3D"70" style=3D"border: 0; margin: 0; padding: 0; color: #67=
+72e5; display: block; font-family: -apple-system, BlinkMacSystemFont, 'Sego=
+e UI', Roboto, 'Helvetica Neue', Ubuntu, sans-serif; font-size: 12px; font-=
+weight: normal;" src=3D"https://stripe-images.s3.amazonaws.com/html_emails/=
+2023-03-30/header/stripe_logo_blurple_email_highres.png">
+        </a>
+      </td>
+      <td class=3D"st-Header-spacing" width=3D"423" style=3D"border: 0; mar=
+gin: 0; padding: 0;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--divider" colspan=3D"4" height=3D"32=
+" style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1=
+px; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      Hi there,
+
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      We=E2=80=99ve had some trouble sending requests in
+  test
+  mode to a webhook endpoint associated with your Abdo account. Stripe send=
+s <a style=3D"border: 0; margin: 0; padding: 0; color: #625afa !important; =
+font-weight: bold; text-decoration: none;  " href=3D"https://59.email.strip=
+e.com/CL0/https:%2F%2Fstripe.com%2Fdocs%2Fwebhooks/1/01010194f9a18c1b-59d0c=
+cf9-3e06-49ec-a3e0-32c6e4394d82-000000/DldJtwY40MITXOMxSs17UlpLKAp79-Djb_DD=
+EibdWZc=3D392">webhook events</a> to your server to notify you of activity =
+in your Stripe account, such as a completed payout or a newly-created invoi=
+ce.
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      The URL of the failing webhook endpoint is: <span class=3D"st-Delink"=
+ style=3D"border: 0; margin: 0; padding: 0; font-weight: bold;">https://gig=
+app.runasp.net/api/stripe-webhook</span>
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      You (or someone on your team) configured your Stripe account to send =
+events to that URL. You can change your account=E2=80=99s webhook endpoints=
+ <a style=3D"border: 0; margin: 0; padding: 0; color: #625afa !important; f=
+ont-weight: bold; text-decoration: none;  " href=3D"https://59.email.stripe=
+.com/CL0/https:%2F%2Fdashboard.stripe.com%2Fb%2Facct_1QgrriP8D5DYTUU6%3Fdes=
+tination=3D%252Fwebhooks/1/01010194f9a18c1b-59d0ccf9-3e06-49ec-a3e0-32c6e43=
+94d82-000000/3E3-aM9aaPRY3JmPWWWHS4YgpLbvDCNslZUy2rOK_M4=3D392">from the Da=
+shboard</a>.
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      In most cases, a failing webhook does not impact your payments or pay=
+outs. However:
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-List st-List--unordered st-Width st-Width--mobile" borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-widt=
+h: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" height=3D"8" style=3D"bord=
+er: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-he=
+ight-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+   =20
+  <tr>
+  <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"4" height=3D"8" sty=
+le=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; m=
+so-line-height-rule: exactly;">
+    <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+  </td>
+</tr>
+<tr>
+    <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin: 0=
+; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exact=
+ly;" width=3D"48">
+      <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+    </td>
+  <td style=3D"border: 0; margin: 0; padding: 0;" valign=3D"top" width=3D"2=
+8">
+    <table class=3D"st-List-bullet" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" width=3D"28">
+      <tbody>
+        <tr>
+          <td colspan=3D"3" height=3D"9" style=3D"border: 0; margin: 0; pad=
+ding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+        <tr>
+          <td style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; li=
+ne-height: 1px; mso-line-height-rule: exactly;" width=3D"11">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+          <td bgcolor=3D"#e6ebf1" height=3D"6" style=3D"border: 0; margin: =
+0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exac=
+tly; background-color: #414552; border-radius: 6px;" width=3D"6">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+          <td style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; li=
+ne-height: 1px; mso-line-height-rule: exactly;" width=3D"11">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan=3D"3" height=3D"9" style=3D"border: 0; margin: 0; pad=
+ding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+  <td class=3D"st-Font st-Font--body" style=3D"border: 0; margin: 0; paddin=
+g: 0; color: #414552; font-family: -apple-system, BlinkMacSystemFont, 'Sego=
+e UI', Roboto, 'Helvetica Neue', Ubuntu, sans-serif; font-size: 16px; line-=
+height: 24px;">
+
+ =20
+    <p style=3D"border: 0; margin: 0; padding: 0; font-family: -apple-syste=
+m, 'SF Pro Display', 'SF Pro Text', 'Helvetica', sans-serif;">If you use su=
+bscriptions <a style=3D"border: 0; margin: 0; padding: 0; color: #625afa !i=
+mportant; font-weight: bold; text-decoration: none;  " href=3D"https://59.e=
+mail.stripe.com/CL0/https:%2F%2Fstripe.com%2Fdocs%2Fbilling%2Fsubscriptions=
+%2Fwebhooks%23understand/1/01010194f9a18c1b-59d0ccf9-3e06-49ec-a3e0-32c6e43=
+94d82-000000/C2gpTDwqnlKgVYc31MllHj1DS_Y1tbq7mTHg5yLXLIM=3D392">we rely on =
+your webhook endpoint</a> to notify you of new invoices. These invoices may=
+ be delayed for up to three days if your endpoint is unable to successfully=
+ receive them.</p>
+ =20
+
+  </td>
+    <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin: 0=
+; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exact=
+ly;" width=3D"48">
+      <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+    </td>
+</tr>
+<tr>
+  <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"4" height=3D"8" sty=
+le=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; m=
+so-line-height-rule: exactly;">
+    <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+  </td>
+</tr>
+  <tr>
+  <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"4" height=3D"8" sty=
+le=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; m=
+so-line-height-rule: exactly;">
+    <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+  </td>
+</tr>
+<tr>
+    <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin: 0=
+; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exact=
+ly;" width=3D"48">
+      <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+    </td>
+  <td style=3D"border: 0; margin: 0; padding: 0;" valign=3D"top" width=3D"2=
+8">
+    <table class=3D"st-List-bullet" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" width=3D"28">
+      <tbody>
+        <tr>
+          <td colspan=3D"3" height=3D"9" style=3D"border: 0; margin: 0; pad=
+ding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+        <tr>
+          <td style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; li=
+ne-height: 1px; mso-line-height-rule: exactly;" width=3D"11">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+          <td bgcolor=3D"#e6ebf1" height=3D"6" style=3D"border: 0; margin: =
+0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exac=
+tly; background-color: #414552; border-radius: 6px;" width=3D"6">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+          <td style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; li=
+ne-height: 1px; mso-line-height-rule: exactly;" width=3D"11">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan=3D"3" height=3D"9" style=3D"border: 0; margin: 0; pad=
+ding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+  <td class=3D"st-Font st-Font--body" style=3D"border: 0; margin: 0; paddin=
+g: 0; color: #414552; font-family: -apple-system, BlinkMacSystemFont, 'Sego=
+e UI', Roboto, 'Helvetica Neue', Ubuntu, sans-serif; font-size: 16px; line-=
+height: 24px;">
+
+ =20
+    <p style=3D"border: 0; margin: 0; padding: 0; font-family: -apple-syste=
+m, 'SF Pro Display', 'SF Pro Text', 'Helvetica', sans-serif;">If you use Ch=
+eckout and rely on the <span style=3D"border: 0; margin: 0; padding: 0; fon=
+t-style: italic;">checkout.session.completed</span> event as part of your <=
+a style=3D"border: 0; margin: 0; padding: 0; color: #625afa !important; fon=
+t-weight: bold; text-decoration: none;  " href=3D"https://59.email.stripe.c=
+om/CL0/https:%2F%2Fstripe.com%2Fdocs%2Fpayments%2Fcheckout%2Ffulfillment%23=
+webhooks/1/01010194f9a18c1b-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000/hVw=
+nk_BsdDPeXZYigj6FAd8pgFI8XcijqJ-AD5Syw14=3D392">purchase fulfillment proces=
+s</a>, you should review your completed payments to ensure you have fulfill=
+ed all recent purchases.</p>
+ =20
+
+  </td>
+    <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin: 0=
+; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exact=
+ly;" width=3D"48">
+      <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+    </td>
+</tr>
+<tr>
+  <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"4" height=3D"8" sty=
+le=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; m=
+so-line-height-rule: exactly;">
+    <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+  </td>
+</tr>
+
+      <tr>
+        <td class=3D"st-Spacer st-Spacer--stacked" height=3D"8" style=3D"bo=
+rder: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-=
+height-rule: exactly;">
+          <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      We=E2=80=99ve attempted to send event notifications to this endpoint =
+18 times since the first failure on February 9, 2025 at 10:07:23 AM UTC.=20
+If this endpoint is important to your application, please try and fix the i=
+ssue. If you do not need this webhook endpoint, you can remove it from your=
+ Stripe webhook <a style=3D"border: 0; margin: 0; padding: 0; color: #625af=
+a !important; font-weight: bold; text-decoration: none;  " href=3D"https://=
+59.email.stripe.com/CL0/https:%2F%2Fdashboard.stripe.com%2Fb%2Facct_1QgrriP=
+8D5DYTUU6%3Fdestination=3D%252Fwebhooks/2/01010194f9a18c1b-59d0ccf9-3e06-49=
+ec-a3e0-32c6e4394d82-000000/X8B78LDmB0WodRXQxFHaprDZw6YdARJAip3aitQyonc=3D3=
+92">settings</a>. We will stop sending event notifications to this webhook =
+endpoint by February 18, 2025 at 10:07:23 AM UTC.
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      Here is the summary of errors we received while attempting to send we=
+bhook events:
+
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class=3D"st-List st-List--unordered st-Width st-Width--mobile" borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-widt=
+h: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" height=3D"8" style=3D"bord=
+er: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-he=
+ight-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+   =20
+  <tr>
+  <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"4" height=3D"8" sty=
+le=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; m=
+so-line-height-rule: exactly;">
+    <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+  </td>
+</tr>
+<tr>
+    <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin: 0=
+; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exact=
+ly;" width=3D"48">
+      <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+    </td>
+  <td style=3D"border: 0; margin: 0; padding: 0;" valign=3D"top" width=3D"2=
+8">
+    <table class=3D"st-List-bullet" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" width=3D"28">
+      <tbody>
+        <tr>
+          <td colspan=3D"3" height=3D"9" style=3D"border: 0; margin: 0; pad=
+ding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+        <tr>
+          <td style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; li=
+ne-height: 1px; mso-line-height-rule: exactly;" width=3D"11">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+          <td bgcolor=3D"#e6ebf1" height=3D"6" style=3D"border: 0; margin: =
+0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exac=
+tly; background-color: #414552; border-radius: 6px;" width=3D"6">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+          <td style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; li=
+ne-height: 1px; mso-line-height-rule: exactly;" width=3D"11">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan=3D"3" height=3D"9" style=3D"border: 0; margin: 0; pad=
+ding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">
+            <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+  <td class=3D"st-Font st-Font--body" style=3D"border: 0; margin: 0; paddin=
+g: 0; color: #414552; font-family: -apple-system, BlinkMacSystemFont, 'Sego=
+e UI', Roboto, 'Helvetica Neue', Ubuntu, sans-serif; font-size: 16px; line-=
+height: 24px;">
+
+  18 requests had other errors while sending the webhook event.
+
+  </td>
+    <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin: 0=
+; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exact=
+ly;" width=3D"48">
+      <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+    </td>
+</tr>
+<tr>
+  <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"4" height=3D"8" sty=
+le=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; m=
+so-line-height-rule: exactly;">
+    <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+  </td>
+</tr>
+
+      <tr>
+        <td class=3D"st-Spacer st-Spacer--stacked" height=3D"8" style=3D"bo=
+rder: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-=
+height-rule: exactly;">
+          <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      You need to return any status code between HTTP 200 to 299 for Stripe=
+ to consider the webhook event successfully delivered.
+
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      For more details on these errors and to review your account=E2=80=99s=
+ recent activity, you can find the full set of <a style=3D"border: 0; margi=
+n: 0; padding: 0; color: #625afa !important; font-weight: bold; text-decora=
+tion: none;  " href=3D"https://59.email.stripe.com/CL0/https:%2F%2Fdashboar=
+d.stripe.com%2Fb%2Facct_1QgrriP8D5DYTUU6%3Fdestination=3D%252Ftest%252Feven=
+ts/1/01010194f9a18c1b-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000/2WZUVREaY=
+Of-2EDdL9ZdN-vdIQ5grC1L2Tf4YuJ8JTg=3D392">events</a> and <a style=3D"border=
+: 0; margin: 0; padding: 0; color: #625afa !important; font-weight: bold; t=
+ext-decoration: none;  " href=3D"https://59.email.stripe.com/CL0/https:%2F%=
+2Fdashboard.stripe.com%2Fb%2Facct_1QgrriP8D5DYTUU6%3Fdestination=3D%252Ftes=
+t%252Flogs/1/01010194f9a18c1b-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000/-=
+OzduOqmg1NZgcQnlfSj0PjUsP-jbQ45f4LS11tGT4c=3D392">request logs</a> on the D=
+ashboard.
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      For more in-depth information on how to use webhooks, we recommend re=
+viewing our <a style=3D"border: 0; margin: 0; padding: 0; color: #625afa !i=
+mportant; font-weight: bold; text-decoration: none;  " href=3D"https://59.e=
+mail.stripe.com/CL0/https:%2F%2Fstripe.com%2Fdocs%2Fwebhooks/2/01010194f9a1=
+8c1b-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000/B6IrbbidujwnPg9WFHvOKnAMOE=
+4oZdI1RU8Jg3NfhFU=3D392">documentation</a>.
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      Yours,
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class=3D"st-Copy st-Width st-Width--mobile" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td style=3D"border: 0; margin: 0; padding: 0; color: #414552 !import=
+ant; font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetic=
+a', sans-serif; font-weight:400; font-size: 16px; line-height: 24px;">
+
+      The Stripe team
+
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--stacked" colspan=3D"3" height=3D"8"=
+ style=3D"border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1p=
+x; mso-line-height-rule: exactly;">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div style=3D"background-color: #f6f9fc">
+  <table class=3D"st-Footer st-Width st-Width--mobile st-Layout-Wrapper" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-w=
+idth: 600px; border-bottom-right-radius: 16px; border-bottom-left-radius: 1=
+6px;" bgcolor=3D"#ffffff">
+    <tbody>
+      <tr>
+        <td class=3D"st-Spacer st-Spacer--wrapper" height=3D"40">
+          <div class=3D"st-Spacer">&nbsp;</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<table class=3D"st-Footer st-Width st-Width--mobile" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" width=3D"600" style=3D"min-width: 600px;" bgcolo=
+r=3D"#f6f9fc">
+  <tbody>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--wrapper" height=3D"32">
+        <div class=3D"st-Spacer">&nbsp;</div>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td class=3D"st-Font st-Font--caption st-Mobile--footer" style=3D"bor=
+der: 0; margin: 0; padding: 0; color: #687385; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, sans-seri=
+f; font-size: 12px; line-height: 20px;
+      text-align: left;">
+        <span style=3D"border: 0; margin: 0; padding: 0; color: #687385; te=
+xt-decoration: none;">
+              This email relates to your <a style=3D"border: 0; margin: 0; =
+padding: 0; color: #625afa !important; font-weight: bold; text-decoration: =
+none;  " href=3D"https://59.email.stripe.com/CL0/https:%2F%2Fdashboard.stri=
+pe.com%2Fb%2Facct_1QgrriP8D5DYTUU6%3Fdestination=3D%252F/1/01010194f9a18c1b=
+-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000/IYWkcu4HwCqAbn4O2YH-pDxrxuGyD2=
+FayOnk2KbaBZU=3D392">Abdo</a> Stripe account.<br>
+              Account ID: acct_1QgrriP8D5DYTUU6<br>
+
+            Need to refer to this message? Use this ID: em_th4ba3rbyciajke1=
+jju53tysmu1chy
+        </span>
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--wrapper" height=3D"15">
+        <div class=3D"st-Spacer">&nbsp;</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td class=3D"st-Font st-Font--caption st-Mobile--footer" style=3D"bor=
+der: 0; margin: 0; padding: 0; color: #687385; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, sans-seri=
+f; font-size: 12px; line-height: 20px;
+      text-align: left;">
+        <span class=3D"st-Delink st-Delink--footer" style=3D"border: 0; mar=
+gin: 0; padding: 0; color: #687385; text-decoration: none;">
+          Stripe, 354 Oyster Point Blvd, South San Francisco, CA 94080
+        </span>
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--wrapper" height=3D"10">
+        <div class=3D"st-Spacer">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+      <td class=3D"st-Font st-Font--caption st-Mobile--footer" style=3D"bor=
+der: 0; margin: 0; padding: 0; color: #687385; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, sans-seri=
+f; font-size: 12px; line-height: 20px;
+      text-align: left;">
+        <span style=3D"border: 0; margin: 0; padding: 0; color: #687385; te=
+xt-decoration: none;">
+          You are subscribed to Webhooks emails. Manage your <a style=3D"bo=
+rder: 0; margin: 0; padding: 0; color: #625afa !important; font-weight: bol=
+d; text-decoration: none;  " href=3D"https://59.email.stripe.com/CL0/https:=
+%2F%2Fdashboard.stripe.com%2Fb%2Facct_1QgrriP8D5DYTUU6%3Fdestination=3D%252=
+Fsettings%252Fcommunication-preferences%2523webhook_emails/1/01010194f9a18c=
+1b-59d0ccf9-3e06-49ec-a3e0-32c6e4394d82-000000/Jx4I4G6s4-lgmyZ9u2Soxrzd0WCd=
+iBwfVwzPqloPu1Y=3D392">communication preferences</a>.
+        </span>
+      </td>
+      <td class=3D"st-Spacer st-Spacer--gutter" style=3D"border: 0; margin:=
+ 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exa=
+ctly;" width=3D"48">
+        <div class=3D"st-Spacer st-Spacer--filler">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--wrapper" height=3D"15">
+        <div class=3D"st-Spacer">&nbsp;</div>
+      </td>
+    </tr>
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--wrapper" height=3D"15">
+        <div class=3D"st-Spacer">&nbsp;</div>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td class=3D"st-Spacer st-Spacer--wrapper" height=3D"32">
+        <div class=3D"st-Spacer st-Spacer--kill">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+                    </td>
+                  </tr>
+                  </tbody>
+              </table>
+              <!-- /Wrapper -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- /Background -->
+  <img alt=3D"" src=3D"http://59.email.stripe.com/CI0/01010194f9a18c1b-59d0=
+ccf9-3e06-49ec-a3e0-32c6e4394d82-000000/Vva_dQDNYBWSxvYYRXwUcR3gahZequlrXXZ=
+ZgJWEi6o=3D392" style=3D"display: none; width: 1px; height: 1px;">
+</body>
+</html>=
+
+----==_mimepart_67ac73145533f_3d9a7c82bfcc536a8--

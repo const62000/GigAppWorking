@@ -1,0 +1,134 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.9 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.9" pages="2">
+  <diagram name="Page-1" id="snsBWO3Q0hrvPebX9Xzp">
+    <mxGraphModel dx="1434" dy="1092" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="400" pageHeight="300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-6" value="Karegiver Admin Website" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;dashed=1;verticalAlign=top;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="145.5" y="-208" width="199" height="272" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="luT7bnCXk7jISfFI64l9-1" target="luT7bnCXk7jISfFI64l9-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="luT7bnCXk7jISfFI64l9-1" target="luT7bnCXk7jISfFI64l9-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-1" value="JobManager" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="85" y="118" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="luT7bnCXk7jISfFI64l9-2" target="luT7bnCXk7jISfFI64l9-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="luT7bnCXk7jISfFI64l9-2" target="luT7bnCXk7jISfFI64l9-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-2" value="Caregiver&lt;br&gt;&lt;span style=&quot;font-size: 8px; text-wrap: wrap;&quot;&gt;(Freelancer or Vendor Staff)&lt;/span&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="87" y="226" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-4" value="Rate Caregiver &lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot;&gt;(Freelancer or Vendor Staff)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="175" y="98" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-5" value="Rate JobManager" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="175" y="212.19354838709677" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-6" value="Rate Facility" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="175" y="266.38709677419354" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="luT7bnCXk7jISfFI64l9-11" value="Rate Vendor&lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot;&gt;(if Job was done by Vendor Staff)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="175" y="158.00483870967744" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VWMfRSmtqYjrpEDqxCvU-1" target="VWMfRSmtqYjrpEDqxCvU-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="113" y="-114" />
+              <mxPoint x="113" y="17" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-1" value="Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="74" y="-144" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-2" value="Create Users, Add to Roles" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="175" y="-171" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-3" value="Create Companies" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="175" y="-117" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-4" value="Create Facilities" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="175" y="-63.32" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VWMfRSmtqYjrpEDqxCvU-7" target="VWMfRSmtqYjrpEDqxCvU-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-7" value="VendorManager" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="654" y="-134" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-8" value="VMS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;dashed=1;verticalAlign=top;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="-208" width="199" height="266" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-9" value="Register Vendors" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="432" y="-171" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-10" value="Register Themself" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="432" y="-117" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-11" value="Add Staff to Vendors they are a part of" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="432" y="-63.32" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-13" value="Manage all vendors and staff" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="432" y="-3.6499999999999986" width="140" height="40.645161290322584" as="geometry" />
+        </mxCell>
+        <mxCell id="VWMfRSmtqYjrpEDqxCvU-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.008;entryY=0.45;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="VWMfRSmtqYjrpEDqxCvU-1" target="VWMfRSmtqYjrpEDqxCvU-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="aDRTLO-IS3C7rZPUCQPW" name="Page-2">
+    <mxGraphModel dx="1434" dy="792" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="400" pageHeight="300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GzUtq1TkBOJq8e_3IOB9-1" target="GzUtq1TkBOJq8e_3IOB9-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-1" value="Enum with all the roles" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="36" y="109" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GzUtq1TkBOJq8e_3IOB9-2" target="GzUtq1TkBOJq8e_3IOB9-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-2" value="Add user to role based on enum.ToString()" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="236" y="109" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="GzUtq1TkBOJq8e_3IOB9-4" target="GzUtq1TkBOJq8e_3IOB9-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-4" value="Auth0" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="436" y="109" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GzUtq1TkBOJq8e_3IOB9-6" target="GzUtq1TkBOJq8e_3IOB9-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GzUtq1TkBOJq8e_3IOB9-6" target="GzUtq1TkBOJq8e_3IOB9-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-6" value="Response?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="256" y="194" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-9" value="200 OK" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="76" y="204" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GzUtq1TkBOJq8e_3IOB9-11" target="GzUtq1TkBOJq8e_3IOB9-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-11" value="Error: Role does not exist" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="236" y="313" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GzUtq1TkBOJq8e_3IOB9-13" value="Create role from enum.tostring()" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="236" y="406" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

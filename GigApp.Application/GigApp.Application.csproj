@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.6.1" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Auth0.AuthenticationApi" Version="7.32.0" />
+    <PackageReference Include="Auth0.ManagementApi" Version="7.32.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+	  <PackageReference Include="Mapster" Version="7.4.0" />
+	  <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
+	  <PackageReference Include="Stripe.net" Version="47.2.0" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\GIgApp.Contracts\GIgApp.Contracts.csproj" />
+    <ProjectReference Include="..\GigApp.Domain\GigApp.Domain.csproj" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>
