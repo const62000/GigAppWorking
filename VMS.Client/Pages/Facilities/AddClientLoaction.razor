@@ -1,0 +1,88 @@
+@page "/clients/add-location/{clientId}"
+@attribute [Authorize]
+@inject IFacilitiesRepository facilitiesRepository
+@inject NavigationManager _navigationManager
+@inject IJSRuntime JSRuntime
+
+<h3>Add Client Location</h3>
+<EditForm Model="@clientLocationRequest" OnValidSubmit="OnSubmit">
+    <div class="mb-3">
+        <label for="locationName" class="form-label">Location Name:</label>
+        <InputText id="locationName" class="form-control" @bind-Value="clientLocationRequest.LocationName" required />
+    </div>
+    <!-- Address Information Section -->
+    <section>
+        <h4>Address Information</h4>
+        <div class="mb-3">
+            <label for="autocomplete" class="form-label">Location :</label>
+            <input type="text" id="autocomplete" placeholder="Enter a location" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="streetAddress1" class="form-label">Street Address 1:</label>
+            <InputText id="streetAddress1" class="form-control"
+                @bind-Value="clientLocationRequest.Address.StreetAddress1" required />
+        </div>
+        <div class="mb-3">
+            <label for="streetAddress2" class="form-label">Street Address 2:</label>
+            <InputText id="streetAddress2" class="form-control"
+                @bind-Value="clientLocationRequest.Address.StreetAddress2" />
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City:</label>
+            <InputText id="city" class="form-control" @bind-Value="clientLocationRequest.Address.City" required />
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country:</label>
+            <InputText id="country" class="form-control" @bind-Value="clientLocationRequest.Address.Country" required />
+        </div>
+        <div class="mb-3">
+            <label for="postalCode" class="form-label">Postal Code:</label>
+            <InputText id="postalCode" class="form-control" @bind-Value="clientLocationRequest.Address.PostalCode"
+                required />
+        </div>
+    </section>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string ClientId { get; set; }
+    private ClientLocationRequest clientLocationRequest { get; set; } = new();
+    private DotNetObjectReference<AddClientLoaction> objRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            objRef = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeVoidAsync("initializeAutocomplete", objRef, "autocomplete");
+        }
+    }
+
+    [JSInvokable]
+    public void OnPlaceSelected(GoogleAddress address)
+    {
+        clientLocationRequest.Address.StreetAddress1 = address.Street ?? "street";
+        clientLocationRequest.Address.City = address.City ?? "city";
+        clientLocationRequest.Address.Country = address.Country ?? "country";
+        clientLocationRequest.Address.Latitude = address.Latitude ?? 0;
+        clientLocationRequest.Address.Longitude = address.Longitude ?? 0;
+        clientLocationRequest.Address.PostalCode = address.PostalCode ?? "postalCode";
+        StateHasChanged();
+    }
+
+    private async Task OnSubmit()
+    {
+        if (long.TryParse(ClientId, out var clientId))
+        {
+            clientLocationRequest.ClientId = clientId;
+            await facilitiesRepository.AddClientLocationAsync(clientLocationRequest);
+            _navigationManager.NavigateTo("/facilities/clients");
+        }
+    }
+
+    public void Dispose()
+    {
+        objRef?.Dispose();
+    }
+}

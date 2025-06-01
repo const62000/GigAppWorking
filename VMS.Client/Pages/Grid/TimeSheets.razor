@@ -1,0 +1,29 @@
+@page "/timesheets"
+@attribute [Authorize]
+@using GigApp.Domain.Entities
+@* @using PureScale.RCL.Components.ContentItemComponents *@
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject ITimeSheetRepository _timeSheetRepository
+
+<h3>Time Sheets</h3>
+
+<QuickGrid TGridItem="TimeSheet" Items="@timeSheets.AsQueryable()" Pagination="pagination">
+    <PropertyColumn Property="@(t => t.Id)" Title="ID" />
+    <PropertyColumn Property="@(t => t.HiringId)" Title="Hiring ID" />
+    <PropertyColumn Property="@(t => t.UserId)" Title="User ID" />
+    <PropertyColumn Property="@(t => t.ClockIn)" Title="Clock In" />
+    <PropertyColumn Property="@(t => t.ClockOut)" Title="Clock Out" />
+    <PropertyColumn Property="@(t => t.Status)" Title="Status" />
+    <PropertyColumn Property="@(t => t.TimeSheetApprovalStatus)" Title="Approval Status" />
+    <PropertyColumn Property="@(t => t.TimeSheetNotes)" Title="Notes" />
+</QuickGrid>
+
+<Paginator State="pagination" />
+@code {
+    private List<TimeSheet> timeSheets { get; set; } = new();
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    protected override async Task OnInitializedAsync()
+    {
+        timeSheets = await _timeSheetRepository.GetTimeSheetsAsync();
+    }
+}

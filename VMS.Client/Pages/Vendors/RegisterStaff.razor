@@ -1,0 +1,64 @@
+@page "/register-staff/{vendorId?}"
+@inject IVendorRepository VendorRepository
+@inject IAuthRepository AuthRepository
+@inject NavigationManager _navigationManager
+@attribute [Authorize]
+
+<h3>Staff Registration Wizard</h3>
+<h6 class="text-danger">@_message</h6>
+
+<UserRegisteration SignupRequest="signupRequest" OnSubmit="SubmitRegistration" />
+
+@code {
+    [Parameter]
+    public string? VendorId { get; set; }
+    private SignupRequest signupRequest = new SignupRequest(string.Empty, string.Empty, string.Empty, string.Empty, new
+    List<UserType>(), new AddressRequest(string.Empty, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty), new
+    List<LicenseRequest>());
+    private string _message = string.Empty;
+
+
+    private async Task SubmitRegistration()
+    {
+
+        (var signupResult, var message) = await AuthRepository.Signup(signupRequest);
+        if (signupResult != null)
+        {
+            if (string.IsNullOrEmpty(VendorId))
+            {
+                var staffResult = await VendorRepository.AddStaff(signupRequest.Email);
+                if (staffResult.Status)
+                {
+                    _navigationManager.NavigateTo("/staff");
+                }
+                else
+                {
+                    _message = staffResult.Message;
+                }
+            }
+            else
+            {
+                if (int.TryParse(VendorId, out int vendorId))
+                {
+                    var staffResult = await VendorRepository.AddStaff(signupRequest.Email, vendorId);
+                    if (staffResult.Status)
+                    {
+                        _navigationManager.NavigateTo("/staff");
+                    }
+                    else
+                    {
+                        _message = staffResult.Message;
+                    }
+                }
+                else
+                {
+                    _message = "Invalid Vendor ID";
+                }
+            }
+        }
+        else
+        {
+            _message = message;
+        }
+    }
+}

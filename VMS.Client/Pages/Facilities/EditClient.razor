@@ -1,0 +1,106 @@
+@page "/clients/edit/{id}"
+@inject IFacilitiesRepository _facilitiesRepository
+@inject NavigationManager _navigationManager
+@inject IJSRuntime JSRuntime
+@attribute [Authorize]
+
+<h3>Edit Client</h3>
+<h4 class="text-danger">@_message</h4>
+<EditForm Model="@clientRequest" OnValidSubmit="OnSubmit">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="clientRequest.Name" required />
+    </div>
+    <!-- Address Information Section -->
+    <section>
+        <h4>Address Information</h4>
+        <div class="mb-3">
+            <label for="autocomplete" class="form-label">Location :</label>
+            <input type="text" id="autocomplete" placeholder="Enter a location" class="form-control"
+                @bind="clientRequest.Address.StreetAddress1" required />
+        </div>
+        <div class="mb-3">
+            <label for="streetAddress1" class="form-label">Street Address 1:</label>
+            <InputText id="streetAddress1" class="form-control" @bind-Value="clientRequest.Address.StreetAddress1"
+                required />
+        </div>
+        <div class="mb-3">
+            <label for="streetAddress2" class="form-label">Street Address 2:</label>
+            <InputText id="streetAddress2" class="form-control" @bind-Value="clientRequest.Address.StreetAddress2" />
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City:</label>
+            <InputText id="city" class="form-control" @bind-Value="clientRequest.Address.City" required />
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country:</label>
+            <InputText id="country" class="form-control" @bind-Value="clientRequest.Address.Country" required />
+        </div>
+    </section>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    private string _message = string.Empty;
+    private ClientRequest clientRequest = new("", new AddressRequest(string.Empty, string.Empty, string.Empty,
+    string.Empty, 0, 0, string.Empty));
+    private DotNetObjectReference<EditClient> objRef;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (long.TryParse(Id, out var id))
+        {
+            var client = await _facilitiesRepository.GetClientAsync(id);
+            clientRequest.Name = client.Name;
+            clientRequest.Address.StreetAddress1 = client.Addresses.FirstOrDefault()?.StreetAddress1!;
+            clientRequest.Address.StreetAddress2 = client.Addresses.FirstOrDefault()?.StreetAddress2!;
+            clientRequest.Address.City = client.Addresses.FirstOrDefault()?.City!;
+            clientRequest.Address.Country = client.Addresses.FirstOrDefault()?.Country!;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            objRef = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeVoidAsync("initializeAutocomplete", objRef);
+        }
+    }
+
+    [JSInvokable]
+    public void OnPlaceSelected(GoogleAddress address)
+    {
+        clientRequest.Address.StreetAddress1 = address.Street ?? "street";
+        clientRequest.Address.City = address.City ?? "city";
+        clientRequest.Address.Country = address.Country ?? "country";
+        clientRequest.Address.Latitude = address.Latitude ?? 0;
+        clientRequest.Address.Longitude = address.Longitude ?? 0;
+        clientRequest.Address.PostalCode = address.PostalCode ?? "postalCode";
+        StateHasChanged();
+    }
+
+    private async Task OnSubmit()
+    {
+        if (long.TryParse(Id, out var id))
+        {
+            var result = await _facilitiesRepository.EditFacility(clientRequest, id);
+            if (result.Status)
+            {
+                _navigationManager.NavigateTo("/facilities/clients");
+            }
+            else
+            {
+                _message = result.Message;
+            }
+        }
+    }
+
+    public void Dispose()
+    {
+        objRef?.Dispose();
+    }
+}

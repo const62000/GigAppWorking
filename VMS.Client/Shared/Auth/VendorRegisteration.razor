@@ -1,0 +1,41 @@
+<EditForm Model="@VendorRequest" OnValidSubmit="SubmitRegistration" class="needs-validation" novalidate>
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+    <section>
+        <h4>Vendor Information</h4>
+        <DataAnnotationsValidator />
+        <ValidationSummary class="text-danger" />
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Vendor Name:</label>
+            <InputText id="name" @oninput="OnNameChanged" class="form-control" @bind-Value="VendorRequest!.Name"
+                required />
+        </div>
+        <div class="mb-3">
+            <label for="servicesOffered" class="form-label">Services Offered or Website:</label>
+            <InputText @oninput="OnServicesOfferedChanged" id="servicesOffered" class="form-control"
+                @bind-Value="VendorRequest!.ServicesOffered" required />
+        </div>
+        <!-- Vendor Address Information Section -->
+    </section>
+</EditForm>
+
+@code {
+    [Parameter]
+    public VendorRequest VendorRequest { get; set; } = new VendorRequest();
+    [Parameter]
+    public EventCallback<VendorRequest> OnFieldChanged { get; set; }
+
+    private void OnServicesOfferedChanged()
+    {
+        OnFieldChanged.InvokeAsync(VendorRequest);
+    }
+    private void OnNameChanged()
+    {
+        OnFieldChanged.InvokeAsync(VendorRequest);
+    }
+    public async Task SubmitRegistration()
+    {
+
+    }
+}

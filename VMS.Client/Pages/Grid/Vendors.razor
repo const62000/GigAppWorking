@@ -1,0 +1,102 @@
+@page "/vendors"
+@attribute [Authorize]
+@using GigApp.Domain.Entities
+@* @using PureScale.RCL.Components.ContentItemComponents *@
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager _navigationManager
+@inject IVendorRepository _vendorRepository
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<div class="d-flex justify-content-between">
+    <h3>Vendors</h3>
+    @if (isAdmin)
+    {
+        <button @onclick="AddVendor" class="btn btn-primary">Add Vendor</button>
+    }
+</div>
+
+<QuickGrid TGridItem="Vendor" Items="@vendors.AsQueryable()" Pagination="pagination">
+    <PropertyColumn Property="@(v => v.Id)" Title="ID" />
+    <PropertyColumn Property="@(v => v.Name)" Title="Name" />
+    <PropertyColumn Property="@(v => v.ServicesOffered)" Title="Services" />
+    <PropertyColumn Property="@(v => v.Certifications)" Title="Certifications" />
+    <PropertyColumn Property="@(v => v.CreatedAt)" Title="Created Date" />
+    <TemplateColumn Title="Manager">
+        <CellTemplate>
+            @{
+                var vendor = (Vendor)context;
+            }
+            @if (string.IsNullOrEmpty(vendor.ManagerName))
+            {
+                <button @onclick="() => AddManager(vendor.Id)" class="btn btn-secondary">Add Manager</button>
+            }
+            else
+            {
+                <span>@vendor.ManagerName</span>
+            }
+        </CellTemplate>
+    </TemplateColumn>
+    <TemplateColumn Title="Actions">
+        <CellTemplate>
+            @{
+                var vendor = (Vendor)context;
+            }
+            <div class="d-flex justify-content-between">
+                <button @onclick="() => EditVendor(vendor.Id)" class="btn btn-primary">Edit</button>
+                <button @onclick="() => DeleteVendor(vendor.Id)" class="btn btn-danger">Delete</button>
+            </div>
+        </CellTemplate>
+    </TemplateColumn>
+    <TemplateColumn Title="Add Staff" Class="w-25">
+        <CellTemplate>
+            @{
+                var vendor = (Vendor)context;
+            }
+            <button @onclick="() => AddStaff(vendor.Id)" class="btn btn-secondary">Add Staff</button>
+        </CellTemplate>
+    </TemplateColumn>
+</QuickGrid>
+<Paginator State="pagination" />
+@code {
+    private List<Vendor> vendors { get; set; } = new();
+    private bool isAdmin;
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        isAdmin = user.IsInRole("Admin");
+        vendors = await _vendorRepository.GetVendors();
+    }
+
+    private void AddVendor()
+    {
+        _navigationManager.NavigateTo("/register-vendor");
+    }
+
+    private void AddManager(int vendorId)
+    {
+        _navigationManager.NavigateTo($"/add-manager/{vendorId.ToString()}");
+    }
+
+    private void AddStaff(int vendorId)
+    {
+        _navigationManager.NavigateTo($"/register-staff/{vendorId.ToString()}");
+    }
+
+    private async Task DeleteVendor(int vendorId)
+    {
+        var result = await _vendorRepository.DeleteVendors(new DeleteVendorsRequest(new List<int> { vendorId }));
+        if (result.Status)
+        {
+            vendors = vendors.Where(v => v.Id != vendorId).ToList();
+            StateHasChanged();
+        }
+    }
+
+    private void EditVendor(int vendorId)
+    {
+        _navigationManager.NavigateTo($"/edit-vendor/{vendorId.ToString()}");
+    }
+}

@@ -1,0 +1,31 @@
+@inject IJSRuntime JSRuntime
+
+@if(Display)
+{
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="bootstrapToast">
+            <div class="toast-header">
+                <strong class="me-auto">@Title</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @Message
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public string Title { get; set; } = "Notification";
+    [Parameter] public string Message { get; set; } = "This is a toast message.";
+    [Parameter] public bool Display { get; set; } = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var toastModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/module.js");
+            await toastModule.InvokeVoidAsync("showToast", "#bootstrapToast");
+        }
+    }
+} 

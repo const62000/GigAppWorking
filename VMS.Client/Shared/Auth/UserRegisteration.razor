@@ -1,0 +1,62 @@
+<EditForm Model="@SignupRequest" OnValidSubmit="SubmitRegistration" class="needs-validation" novalidate>
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+
+    <!-- User Information Section -->
+    <section>
+        <h4>User Information</h4>
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name:</label>
+            <InputText id="firstName" class="form-control" @bind-Value="SignupRequest!.FirstName" required />
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name:</label>
+            <InputText id="lastName" class="form-control" @bind-Value="SignupRequest.LastName" required />
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <InputText id="email" class="form-control" @bind-Value="SignupRequest.Email" required />
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <InputText id="password" type="password" class="form-control" @bind-Value="SignupRequest.Password"
+                required />
+        </div>
+    </section>
+
+    <!-- Address Information Section -->
+    <section>
+        <h4>Address Information</h4>
+        <div class="mb-3">
+            <label for="streetAddress1" class="form-label">Street Address 1:</label>
+            <InputText id="streetAddress1" class="form-control" @bind-Value="SignupRequest.Address.StreetAddress1"
+                required />
+        </div>
+        <div class="mb-3">
+            <label for="streetAddress2" class="form-label">Street Address 2:</label>
+            <InputText id="streetAddress2" class="form-control" @bind-Value="SignupRequest.Address.StreetAddress2" />
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City:</label>
+            <InputText id="city" class="form-control" @bind-Value="SignupRequest.Address.City" required />
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country:</label>
+            <InputText id="country" class="form-control" @bind-Value="SignupRequest.Address.Country" required />
+        </div>
+    </section>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public SignupRequest? SignupRequest { get; set; }
+    [Parameter]
+    public EventCallback<SignupRequest> OnSubmit { get; set; }
+
+    private async Task SubmitRegistration()
+    {
+        await OnSubmit.InvokeAsync(SignupRequest!);
+    }
+}

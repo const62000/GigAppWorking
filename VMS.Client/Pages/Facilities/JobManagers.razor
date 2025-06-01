@@ -1,0 +1,67 @@
+@page "/clients/client-job-managers/{clientId}"
+@attribute [Authorize]
+@inject IFacilitiesRepository facilitiesRepository
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<div class="d-flex justify-content-between">
+    <h3>Job Managers</h3>
+    @if (isAdmin)
+    {
+        <button class="btn btn-primary" @onclick="AddJobManager">Add Job Manager</button>
+    }
+</div>
+<QuickGrid TGridItem="User" Items="@jobManagers.AsQueryable()" Pagination="pagination">
+    <PropertyColumn Property="@(u => u.Id)" Title="ID" />
+    <PropertyColumn Property="@(u => u.FirstName)" Title="Name" />
+    <PropertyColumn Property="@(u => u.Email)" Title="Email" />
+    <PropertyColumn Property="@(u => u.Disabled)" Title="Disabled" />
+    <TemplateColumn Title="Actions">
+        <CellTemplate>
+            @{
+                var jobManager = (User)context;
+            }
+            <div class="d-flex justify-content-between">
+                <button @onclick="() => DeleteJobManager(jobManager.Id)" class="btn btn-danger">Delete</button>
+            </div>
+        </CellTemplate>
+    </TemplateColumn>
+</QuickGrid>
+
+<Paginator State="pagination" />
+
+@code {
+    [Parameter]
+    public string clientId { get; set; }
+    private List<User> jobManagers { get; set; } = new();
+    private bool isAdmin { get; set; } = false;
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (long.TryParse(clientId, out var _clientId))
+        {
+            jobManagers = await LoadJobManagers(_clientId);
+        }
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        isAdmin = authState.User.IsInRole("Admin");
+    }
+    private async Task<List<User>> LoadJobManagers(long clientId)
+    {
+        return await facilitiesRepository.GetJobManagers(clientId);
+    }
+    private void AddJobManager()
+    {
+        _navigationManager.NavigateTo($"/clients/client-job-managers/{clientId}/add");
+    }
+    private async Task DeleteJobManager(long userId)
+    {
+        var result = await facilitiesRepository.DeleteJobManager(long.Parse(clientId), userId);
+        if (result.Status)
+        {
+            jobManagers = jobManagers.Where(c => c.Id != userId).ToList();
+            StateHasChanged();
+        }
+    }
+}

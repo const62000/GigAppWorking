@@ -1,0 +1,70 @@
+@page "/staff"
+@attribute [Authorize]
+@using GigApp.Domain.Entities
+@* @using PureScale.RCL.Components.ContentItemComponents *@
+@inject NavigationManager _navigationManager
+@inject IVendorRepository _vendorRepository
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<div class="d-flex justify-content-between">
+    <h3>Staff</h3>
+    @if (!isAdmin)
+    {
+        <button @onclick="AddStaff" class="btn btn-primary">Add Staff</button>
+    }
+</div>
+
+<QuickGrid TGridItem="User" Items="@users.AsQueryable()" Pagination="pagination">
+    <PropertyColumn Property="@(u => u.Id)" Title="ID" />
+    <PropertyColumn Property="@(u => u.Email)" Title="Email" />
+    <PropertyColumn Property="@(u => u.FirstName)" Title="First Name" />
+    <PropertyColumn Property="@(u => u.LastName)" Title="Last Name" />
+    <PropertyColumn Property="@(u => u.VendorName)" Title="Vendor" />
+    <TemplateColumn Title="Actions">
+        <Template>
+            @{
+                var user = (User)context;
+            }
+            <div class="d-flex justify-content-between">
+                <button @onclick="() => EditUser(user.Id)" class="btn btn-primary">Edit</button>
+                <button @onclick="() => DeleteUser(user.Id)" class="btn btn-danger">Delete</button>
+            </div>
+        </Template>
+    </TemplateColumn>
+</QuickGrid>
+
+<Paginator State="pagination" />
+@code {
+    private List<User> users { get; set; } = new();
+    private bool isAdmin { get; set; }
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await GetStaff();
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        isAdmin = authState.User.IsInRole("Admin");
+    }
+    private async Task<List<User>> GetStaff()
+    {
+        var staff = await _vendorRepository.GetStaff();
+        return staff;
+    }
+    private void AddStaff()
+    {
+        _navigationManager.NavigateTo("/register-staff");
+    }
+    private void EditUser(long userId)
+    {
+        _navigationManager.NavigateTo($"/users/{userId}");
+    }
+    private async Task DeleteUser(long userId)
+    {
+        var result = await _vendorRepository.DeleteStaff(userId);
+        if (result.Status)
+        {
+            users = users.Where(u => u.Id != userId).ToList();
+            StateHasChanged();
+        }
+    }
+}

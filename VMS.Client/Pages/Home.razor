@@ -1,0 +1,18 @@
+﻿@page "/"
+@attribute [Authorize]
+@inject IAuthRepository _authRepository
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, @user.FirstName</h1>
+
+Welcome to Karegiver app.
+
+@code {
+    private User user = new User();
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await _authRepository.GetCurrentUser() ?? new User();
+    }
+}

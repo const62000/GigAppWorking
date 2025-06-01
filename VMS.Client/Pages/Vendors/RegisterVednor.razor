@@ -1,0 +1,34 @@
+@page "/register-vendor"
+@inject NavigationManager _navigationManager
+@inject IVendorRepository VendorRepository
+
+<h3>Vendor Registration</h3>
+<h4 class="text-danger">@_message</h4>
+<EditForm Model="@VendorRequest" OnValidSubmit="SubmitRegistration" class="needs-validation" novalidate>
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+    <VendorRegisteration VendorRequest="VendorRequest" OnFieldChanged="OnFieldChanged" />
+    <button class="btn btn-primary" type="submit">Submit</button>
+</EditForm>
+@code {
+    private VendorRequest VendorRequest = new VendorRequest();
+    private string _message = string.Empty;
+    private void OnFieldChanged(VendorRequest vendorRequest)
+    {
+        VendorRequest = vendorRequest;
+    }
+    private async Task SubmitRegistration()
+    {
+        VendorRequest.Status = "Active";
+        VendorRequest.Certifications = "Certified";
+        var vendorResult = await VendorRepository.AddVendor(VendorRequest);
+        if (vendorResult.Status)
+        {
+            _navigationManager.NavigateTo("/");
+        }
+        else
+        {
+            _message = vendorResult.Message;
+        }
+    }
+}

@@ -1,0 +1,64 @@
+@page "/register"
+@inject IAuthRepository AuthRepository
+@inject IVendorRepository VendorRepository
+@inject ILocalStorageService _localStorage
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider _authenticationStateProvider
+
+
+<h3>Vendor Manager & Vendor Registration</h3>
+<h4 class="text-danger">@_message</h4>
+<p>Please fill out the form below to register as a vendor manager and vendor. A Kargiver User will be created for you
+    which is a VendorManager for the Vendor you are also registering in form. This User account can be used in the
+    Karegiver Vendor Management System(VMS) portal as well as the Kargiver App. You may also use this App to request
+    care for your loved ones.</p>
+
+<VendorManagerRegisteration SignupRequest="signupRequest" VendorRequest="vendorRequest" OnSubmit="SubmitRegistration" />
+
+
+@code {
+    private SignupRequest signupRequest = new SignupRequest(string.Empty, string.Empty, string.Empty, string.Empty, new
+    List<UserType>(), new AddressRequest(string.Empty, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty), new
+    List<LicenseRequest>());
+    private VendorRequest vendorRequest = new VendorRequest();
+    private string _message = string.Empty;
+
+    private async Task SubmitRegistration(RegistrationViewModel vm)
+    {
+        // Here you would typically send the signupRequest and vendorRequest to your backend service
+        // For demonstration, we'll just show a success message
+        //ToastService.ShowSuccess("Registration completed successfully!");
+        (var signupResult, var message) = await AuthRepository.Signup(vm.SignupRequest);
+        if (signupResult != null)
+        {
+            var loginRequest = new LoginRequest(signupRequest.Email, signupRequest.Password, string.Empty, string.Empty);
+            (var accessToken, message) = await AuthRepository.Login(loginRequest);
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                _message = message;
+                await _localStorage.SetItemAsync("access_token", accessToken);
+                var x = await _localStorage.GetItemAsync<string>("access_token");
+                await _authenticationStateProvider.GetAuthenticationStateAsync();
+                vendorRequest.Status = "Active";
+                vendorRequest.Certifications = "Certified";
+                var vendorResult = await VendorRepository.AddVendor(vm.VendorRequest);
+                if (vendorResult.Status)
+                {
+                    _navigationManager.NavigateTo("/");
+                }
+                else
+                {
+                    _message = vendorResult.Message;
+                }
+            }
+            else
+            {
+                _message = message;
+            }
+        }
+        else
+        {
+            _message = message;
+        }
+    }
+}

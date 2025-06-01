@@ -1,0 +1,69 @@
+@page "/freelancers"
+@attribute [Authorize]
+@inject IFreelancerRepository _freelancerRepository
+<h1>Freelancers</h1>
+
+<QuickGrid TGridItem="User" Items="@freelancers.AsQueryable()" Pagination="pagination">
+    <PropertyColumn Property="@(u => u.Id)" Title="ID" />
+    <PropertyColumn Property="@(u => u.FirstName)" Title="Name" />
+    <PropertyColumn Property="@(u => u.Email)" Title="Email" />
+    <TemplateColumn Title="Approved">
+        <CellTemplate>
+            @{
+                var freelancer = (User)context;
+            }
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                    checked="@(!freelancer.Disabled)" @onchange="() => ToggleFreelancerStatus(freelancer.Id)">
+                <label class="form-check-label" for="flexSwitchCheckDefault">
+                    @(freelancer.Disabled ? "Enable" : "Disable")
+                </label>
+            </div>
+        </CellTemplate>
+    </TemplateColumn>
+</QuickGrid>
+
+<Paginator State="pagination" />
+
+@code {
+    private List<User> freelancers { get; set; } = new();
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadFreelancers();
+        await base.OnInitializedAsync();
+    }
+    private async Task LoadFreelancers()
+    {
+        freelancers = await _freelancerRepository.GetFreelancers();
+    }
+    private async Task EnableFreelancer(long id)
+    {
+        var result = await _freelancerRepository.ChangeFreelancerStatus(id, false);
+        if (result.Status)
+        {
+            freelancers.FirstOrDefault(f => f.Id == id).Disabled = false;
+        }
+    }
+    private async Task DisableFreelancer(long id)
+    {
+        var result = await _freelancerRepository.ChangeFreelancerStatus(id, true);
+        if (result.Status)
+        {
+            freelancers.FirstOrDefault(f => f.Id == id).Disabled = true;
+        }
+    }
+    private async Task ToggleFreelancerStatus(long id)
+    {
+        var result = await _freelancerRepository.ChangeFreelancerStatus(id, !freelancers.FirstOrDefault(f => f.Id ==
+        id).Disabled);
+        if (result.Status)
+        {
+            var freelancer = freelancers.FirstOrDefault(f => f.Id == id);
+            if (freelancer != null)
+            {
+                freelancer.Disabled = !freelancer.Disabled;
+            }
+        }
+    }
+}

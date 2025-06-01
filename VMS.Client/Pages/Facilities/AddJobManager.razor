@@ -1,0 +1,41 @@
+@page "/clients/client-job-managers/{clientId}/add"
+@inject NavigationManager _navigationManager
+@inject IAuthRepository _authRepository
+@inject IFacilitiesRepository _facilitiesRepository
+@attribute [Authorize]
+
+<h3>Add Job Manager</h3>
+<h6 class="text-danger">@_message</h6>
+
+<UserRegisteration SignupRequest="signupRequest" OnSubmit="SubmitRegistration" />
+
+@code {
+    [Parameter]
+    public string? clientId { get; set; }
+    private SignupRequest signupRequest = new SignupRequest(string.Empty, string.Empty, string.Empty, string.Empty, new
+    List<UserType>(), new AddressRequest(string.Empty, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty), new
+    List<LicenseRequest>());
+    private string _message = string.Empty;
+
+    private async Task SubmitRegistration()
+    {
+        (var signupResult, var message) = await _authRepository.Signup(signupRequest);
+        if (signupResult != null)
+        {
+            if (int.TryParse(clientId, out int clientIdInt))
+            {
+                var result = await _facilitiesRepository.AddJobManager(new AssignJobManagerRequest(clientIdInt,
+                signupRequest.Email));
+                if (result.Status)
+                    _navigationManager.NavigateTo("/clients/client-job-managers/2");
+                else
+                    _message = result.Message;
+            }
+        }
+        else
+        {
+            _message = message;
+        }
+    }
+
+}

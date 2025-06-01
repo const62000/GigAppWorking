@@ -1,0 +1,73 @@
+@page "/login"
+@inject IAuthRepository _authRepository
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider _authenticationStateProvider
+@inject ILocalStorageService _localStorage
+
+<h3>Login</h3>
+<h6 class="text-danger">@_message</h6>
+<p>Please enter your credentials to log in to the Karegiver Vendor Management System (VMS).</p>
+
+<LoginForm ViewModel="loginViewModel" OnSubmit="HandleLogin" />
+
+@code {
+    private string _message = string.Empty;
+    private LoginViewModel loginViewModel = new();
+
+    private async Task HandleLogin(LoginViewModel vm)
+    {
+        var loginRequest = new LoginRequest(vm.Email, vm.Password, string.Empty, string.Empty);
+        (var accessToken, var message) = await _authRepository.Login(loginRequest);
+        if (!string.IsNullOrEmpty(accessToken))
+        {
+            await _localStorage.SetItemAsync("access_token", accessToken);
+            await _authenticationStateProvider.GetAuthenticationStateAsync();
+            _message = message;
+            StateHasChanged();
+            _navigationManager.NavigateTo("/staff");
+        }
+        else
+        {
+            _message = message;
+        }
+    }
+}
+
+
+
+@* @page "/login"
+@inject IAuthRepository _authRepository
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider _authenticationStateProvider
+@inject ILocalStorageService _localStorage
+
+<h3>Login</h3>
+<h6 class="text-danger">@_message</h6>
+<LoginComponent OnLogin="HandleLogin" />
+
+@code {
+    private string _message = string.Empty;
+    private string email = string.Empty;
+    private string password = string.Empty;
+    private LoginRequest loginRequest = new LoginRequest(string.Empty, string.Empty, string.Empty, string.Empty);
+
+    private async Task HandleLogin(LoginViewModel vm)
+    {
+        var loginRequest = new LoginRequest(vm.Email, vm.Password, string.Empty, string.Empty);
+        (var accessToken, var message) = await _authRepository.Login(loginRequest);
+        if (!string.IsNullOrEmpty(accessToken))
+        {
+            await _localStorage.SetItemAsync("access_token", accessToken);
+            var x = await _localStorage.GetItemAsync<string>("access_token");
+            await _authenticationStateProvider.GetAuthenticationStateAsync();
+            Console.WriteLine("Toast message: " + message);
+            _message = message;
+            StateHasChanged();
+            _navigationManager.NavigateTo("/staff");
+        }
+        else
+        {
+            _message = message;
+        }
+    }
+} *@

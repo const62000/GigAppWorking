@@ -1,0 +1,39 @@
+@using VMS.Client.ViewModels
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+
+<EditForm Model="@ViewModel" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>Email</label>
+        <InputText @bind-Value="ViewModel.Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Password</label>
+        <InputText @bind-Value="ViewModel.Password" type="password" class="form-control" />
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="button" class="btn btn-secondary" @onclick="GoToRegister">Register</button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter] public LoginViewModel ViewModel { get; set; } = new();
+    [Parameter] public EventCallback<LoginViewModel> OnSubmit { get; set; }
+
+    private async Task Submit()
+    {
+        await OnSubmit.InvokeAsync(ViewModel);
+    }
+
+    private void GoToRegister()
+    {
+        NavigationManager.NavigateTo("/register");
+    }
+}

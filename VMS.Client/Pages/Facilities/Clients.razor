@@ -1,0 +1,104 @@
+@page "/facilities/clients"
+@attribute [Authorize]
+@inject IFacilitiesRepository facilitiesRepository
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+
+<div class="d-flex justify-content-between">
+    <h3>Clients registered with your Vendors</h3>
+    @if (isAdmin)
+    {
+        <button class="btn btn-primary" @onclick="AddClient">Add Client</button>
+    }
+</div>
+<QuickGrid TGridItem="Client" Items="@clients.AsQueryable()" Pagination="pagination">
+    <PropertyColumn Property="@(c => c.Id)" Title="ID" />
+    <PropertyColumn Property="@(c => c.Name)" Title="Name" />
+    <PropertyColumn Property="@(c => c.Addresses.FirstOrDefault().ToString())" Title="Address" />
+    <TemplateColumn Title="Actions">
+        <CellTemplate>
+
+            @{
+                var client = (Client)context;
+            }
+            <div class="d-flex justify-content-between">
+                <button @onclick="() => EditClient(client.Id)" class="btn btn-primary">Edit</button>
+                <button @onclick="() => DeleteClient(client.Id)" class="btn btn-danger">Delete</button>
+            </div>
+        </CellTemplate>
+    </TemplateColumn>
+    <TemplateColumn Title="Locations">
+        <CellTemplate>
+            @{
+                var client = (Client)context;
+            }
+            <button @onclick="() => ViewClientLocations(client.Id)" class="btn btn-secondary">View Locations</button>
+        </CellTemplate>
+    </TemplateColumn>
+    <TemplateColumn Title="Add Location">
+        <CellTemplate>
+            @{
+                var client = (Client)context;
+            }
+            <button @onclick="() => AddClientLocation(client.Id)" class="btn btn-secondary">Add Location</button>
+        </CellTemplate>
+    </TemplateColumn>
+    <TemplateColumn Title="Client Managers" class="">
+        <CellTemplate>
+            @{
+                var client = (Client)context;
+            }
+            <button @onclick="() => ViewClientJobManagers(client.Id)" class="btn btn-secondary">Job Managers</button>
+        </CellTemplate>
+    </TemplateColumn>
+</QuickGrid>
+
+<Paginator State="pagination" />
+
+@code {
+    private List<Client> clients { get; set; } = new();
+    private bool isAdmin { get; set; } = false;
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
+    protected override async Task OnInitializedAsync()
+    {
+        clients = await LoadClients();
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        isAdmin = authState.User.IsInRole("Admin");
+    }
+    private async Task<List<Client>> LoadClients()
+    {
+        return await facilitiesRepository.GetClientsAsync();
+    }
+    private void AddClient()
+    {
+        _navigationManager.NavigateTo("/clients/add");
+    }
+    private void AddClientLocation(long clientId)
+    {
+        _navigationManager.NavigateTo($"/clients/add-location/{clientId.ToString()}");
+    }
+    private void EditClient(long clientId)
+    {
+        _navigationManager.NavigateTo($"/clients/edit/{clientId.ToString()}");
+    }
+    private async Task DeleteClient(long clientId)
+    {
+        var result = await facilitiesRepository.DeleteClientsAsync(new DeleteClientRequest(new List<long> { clientId }));
+        if (result)
+        {
+            clients = clients.Where(c => c.Id != clientId).ToList();
+            StateHasChanged();
+        }
+    }
+    private void ViewClientLocations(long clientId)
+    {
+        _navigationManager.NavigateTo($"/clients/client-locations/{clientId.ToString()}");
+    }
+    private void ViewClientJobManagers(long clientId)
+    {
+        _navigationManager.NavigateTo($"/clients/client-job-managers/{clientId.ToString()}");
+    }
+}

@@ -1,0 +1,41 @@
+@page "/clients/client-locations/{clientId}"
+@attribute [Authorize]
+@inject IFacilitiesRepository _facilitiesRepository
+@inject NavigationManager _navigationManager
+
+
+<h3>Client Locations</h3>
+
+@foreach (var location in clientLocations)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">@location.LocationName</h6>
+            <p class="card-text">
+                <strong>Address:</strong> @location.Address.StreetAddress1<br />
+                @if (!string.IsNullOrEmpty(location.Address.StreetAddress2))
+                {
+                    <span>@location.Address.StreetAddress2<br /></span>
+                }
+                <strong>City:</strong> @location.Address.City<br />
+                <strong>Country:</strong> @location.Address.Country
+            </p>
+        </div>
+    </div>
+}
+
+
+@code {
+    [Parameter]
+    public string ClientId { get; set; }
+
+    private List<ClientLocation> clientLocations = new List<ClientLocation>();
+    protected override async Task OnParametersSetAsync()
+    {
+        if (long.TryParse(ClientId, out var clientId))
+        {
+            clientLocations = await _facilitiesRepository.GetClientLocationsAsync(clientId);
+
+        }
+    }
+}

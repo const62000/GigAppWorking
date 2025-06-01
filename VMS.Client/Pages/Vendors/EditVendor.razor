@@ -1,0 +1,51 @@
+@page "/edit-vendor/{vendorId}"
+@inject NavigationManager _navigationManager
+@inject IVendorRepository VendorRepository
+
+<h3>Edit Vendor</h3>
+<h4 class="text-danger">@_message</h4>
+<EditForm Model="@VendorRequest" OnValidSubmit="SubmitRegistration" class="needs-validation" novalidate>
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+    <VendorRegisteration VendorRequest="VendorRequest" OnFieldChanged="OnFieldChanged" />
+    <button class="btn btn-primary" type="submit">Submit</button>
+</EditForm>
+@code {
+    [Parameter]
+    public string vendorId { get; set; } = string.Empty;
+    private int parsedVendorId = 0;
+    private VendorRequest VendorRequest = new VendorRequest();
+    private string _message = string.Empty;
+    private void OnFieldChanged(VendorRequest vendorRequest)
+    {
+        VendorRequest = vendorRequest;
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        if (int.TryParse(vendorId, out parsedVendorId))
+        {
+            var vendor = await VendorRepository.GetVendorById(parsedVendorId);
+            VendorRequest = new VendorRequest
+                {
+                    Name = vendor.Name,
+                    Status = vendor.Status,
+                    Certifications = vendor.Certifications,
+                    ServicesOffered = vendor.ServicesOffered
+                };
+        }
+    }
+    private async Task SubmitRegistration()
+    {
+        VendorRequest.Status = "Active";
+        VendorRequest.Certifications = "Certified";
+        var vendorResult = await VendorRepository.UpdateVendor(VendorRequest, parsedVendorId);
+        if (vendorResult.Status)
+        {
+            _navigationManager.NavigateTo("/vendors");
+        }
+        else
+        {
+            _message = vendorResult.Message;
+        }
+    }
+}

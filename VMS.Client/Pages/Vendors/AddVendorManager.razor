@@ -1,0 +1,40 @@
+@page "/add-manager/{vendorId}"
+@inject NavigationManager _navigationManager
+@inject IAuthRepository _authRepository
+@inject IVendorRepository _vendorRepository
+@attribute [Authorize]
+
+<h3>Add Vendor Manager</h3>
+<h6 class="text-danger">@_message</h6>
+
+<UserRegisteration SignupRequest="signupRequest" OnSubmit="SubmitRegistration" />
+
+@code {
+    [Parameter]
+    public string? vendorId { get; set; }
+    private SignupRequest signupRequest = new SignupRequest(string.Empty, string.Empty, string.Empty, string.Empty, new
+    List<UserType>(), new AddressRequest(string.Empty, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty), new
+    List<LicenseRequest>());
+    private string _message = string.Empty;
+
+    private async Task SubmitRegistration()
+    {
+        (var signupResult, var message) = await _authRepository.Signup(signupRequest);
+        if (signupResult != null)
+        {
+            if (int.TryParse(vendorId, out int vendorIdInt))
+            {
+                var result = await _vendorRepository.AddVendorManager(new AssignVendorManagerRequest(vendorIdInt, signupRequest.Email));
+                if (result.Status)
+                    _navigationManager.NavigateTo("/vendors");
+                else
+                    _message = result.Message;
+            }
+        }
+        else
+        {
+            _message = message;
+        }
+    }
+
+}

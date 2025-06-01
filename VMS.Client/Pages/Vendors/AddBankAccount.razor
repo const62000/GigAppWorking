@@ -1,0 +1,61 @@
+@page "/vendors/add-bank-account"
+
+@inject HttpClient Http
+@inject IVendorRepository VendorRepository
+@inject NavigationManager NavigationManager
+
+<h3>Add Bank Account</h3>
+
+<EditForm Model="@bankAccountRequest" OnValidSubmit="HandleValidSubmit" class="needs-validation" novalidate>
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+
+    <div class="mb-3">
+        <label for="bankName" class="form-label">Bank Name:</label>
+        <InputText id="bankName" class="form-control" @bind-Value="bankAccountRequest.BankName" required />
+    </div>
+    <div class="mb-3">
+        <label for="bankAccountType" class="form-label">Bank Account Type:</label>
+        <InputText id="bankAccountType" class="form-control" @bind-Value="bankAccountRequest.BankAccountType" required />
+    </div>
+    <div class="mb-3">
+        <label for="bankAccountNumber" class="form-label">Bank Account Number:</label>
+        <InputText id="bankAccountNumber" class="form-control" @bind-Value="bankAccountRequest.BankAccountNumber" required />
+    </div>
+    <div class="mb-3">
+        <label for="bankAccountName" class="form-label">Bank Account Name:</label>
+        <InputText id="bankAccountName" class="form-control" @bind-Value="bankAccountRequest.BankAccountName" required />
+    </div>
+    <div class="mb-3">
+        <label for="bankSwiftCode" class="form-label">Bank Swift Code:</label>
+        <InputText id="bankSwiftCode" class="form-control" @bind-Value="bankAccountRequest.BankSwiftCode" required />
+    </div>
+    <div class="mb-3">
+        <label for="bankCountry" class="form-label">Bank Country:</label>
+        <InputText id="bankCountry" class="form-control" @bind-Value="bankAccountRequest.BankCountry" required />
+    </div>
+    <div class="mb-3">
+        <label for="status" class="form-label">Status:</label>
+        <InputText id="status" class="form-control" @bind-Value="bankAccountRequest.Status" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private BankAccountRequet bankAccountRequest = new BankAccountRequet("", "", "", "", "", "", "", "");
+
+    private async Task HandleValidSubmit()
+    {
+        var response = await VendorRepository.AddBankAccount(bankAccountRequest);
+        if (response.Status)
+        {
+            NavigationManager.NavigateTo("/vendors");
+        }
+        else
+        {
+            // Handle error
+        }
+    }
+}
+
